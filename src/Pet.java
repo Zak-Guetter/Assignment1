@@ -15,14 +15,6 @@ class Pet {
         return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     @Override
     public String toString() {
         return String.format("%-10s | %-4d", name, age);

@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class PetDatabase {
     private ArrayList<Pet> pets = new ArrayList<>();
 
@@ -21,40 +19,6 @@ class PetDatabase {
         }
         System.out.println("+----------------------+");
         System.out.println(pets.size() + " rows in set.");
-    }
-
-    /**
-     * Updates the name and age of a pet specified by its ID (index in the list).
-     * If the ID is invalid, an error message is displayed.
-     *
-     * @param id       the ID (index) of the pet to update
-     * @param newName  the new name for the pet
-     * @param newAge   the new age for the pet
-     */
-    public void updatePet(int id, String newName, int newAge) {
-        if (id >= 0 && id < pets.size()) {
-            Pet pet = pets.get(id);
-            pet.setName(newName);
-            pet.setAge(newAge);
-            System.out.println("Pet updated successfully.");
-        } else {
-            System.out.println("Invalid pet ID.");
-        }
-    }
-
-    /**
-     * Removes a pet from the database based on its ID (index in the list).
-     * If the ID is invalid, an error message is displayed.
-     *
-     * @param id  the ID (index) of the pet to remove
-     */
-    public void removePet(int id) {
-        if (id >= 0 && id < pets.size()) {
-            pets.remove(id);
-            System.out.println("Pet removed successfully.");
-        } else {
-            System.out.println("Invalid pet ID.");
-        }
     }
 
     /**
