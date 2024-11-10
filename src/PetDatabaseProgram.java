@@ -10,12 +10,9 @@ public class PetDatabaseProgram {
         while (running) {
             System.out.println("\nWhat would you like to do?");
             System.out.println("1) View all pets");
-            System.out.println("2) Add more pets");
-            System.out.println("3) Update an existing pet");
-            System.out.println("4) Remove an existing pet");
-            System.out.println("5) Search pets by name");
-            System.out.println("6) Search pets by age");
-            System.out.println("7) Exit program");
+            System.out.println("2) Add new pets");
+            System.out.println("3) Remove a pet");
+            System.out.println("4) Exit program");
             System.out.print("Your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -33,40 +30,25 @@ public class PetDatabaseProgram {
                         String[] parts = input.split(" ");
                         if (parts.length == 2) {
                             String name = parts[0];
-                            int age = Integer.parseInt(parts[1]);
-                            database.addPet(name, age);
+                            try {
+                                int age = Integer.parseInt(parts[1]);
+                                database.addPet(name, age);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Error: " + parts[1] + " is not a valid age.");
+                            }
                         } else {
-                            System.out.println("Invalid input. Please enter name and age.");
+                            System.out.println("Error: " + input + " is not a valid input.");
                         }
                     }
                     break;
                 case 3:
                     database.showPets();
-                    System.out.print("Enter the pet ID to update: ");
-                    int updateId = scanner.nextInt();
-                    scanner.nextLine();  // Clear buffer
-                    System.out.print("Enter new name and new age: ");
-                    String newName = scanner.next();
-                    int newAge = scanner.nextInt();
-                    database.updatePet(updateId, newName, newAge);
-                    break;
-                case 4:
-                    database.showPets();
                     System.out.print("Enter the pet ID to remove: ");
                     int removeId = scanner.nextInt();
                     database.removePet(removeId);
                     break;
-                case 5:
-                    System.out.print("Enter a name to search: ");
-                    String searchName = scanner.nextLine();
-                    database.searchByName(searchName);
-                    break;
-                case 6:
-                    System.out.print("Enter age to search: ");
-                    int searchAge = scanner.nextInt();
-                    database.searchByAge(searchAge);
-                    break;
-                case 7:
+                case 4:
+                    database.savePetsToFile();
                     System.out.println("Goodbye!");
                     running = false;
                     break;
